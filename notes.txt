@@ -1,0 +1,39 @@
+"Kod akışının sırayla işlemediği, işlemlerin birbirini beklemediği, kod akışının işlem durumlarına göre devam ettiği programlamaya Asenkron Programlama denir."
+
+
+nodemon :  runs script auto stop/start on any change
+npm i nodemon@2.0.19 --save-dev   // runs as develops
+npx - is a script runs
+npx nodemon
+
+in , package.json 
+under scripts add "start" : "npx nodemon {index.app}" -> npm start 
+
+middleware  : iki yazılım arası durma devam ! next() 
+
+en özel route en tepede olmalı 
+
+statik dosyalar: 
+
+app.use(express.static("node_modules"));    /// node_modules klasörü artık erişime açık , referans başlangıç noktası olarak 
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+
+app.use("/libs",express.static("node_modules")); /// /libs alias olarak tanımladık
+
+npm i bootstrap@5.3.2    ile bootstrap ı package.json dependencies e ekledik 
+
+ nav.navbar.navbar-dark.bg-primary.navbar-expand-lg [tab]
+
+template engine - pug / ejs 
+
+npm i ejs @ version
+
+app.set("view engine","ejs");
+
+//console.log(app.get("view engine"));
+
+.html>>.ejs
+
+res.senFile >> res.render   ,    res.render("users/index");  yeterli arayacğı yer zatn views dir
+
+
