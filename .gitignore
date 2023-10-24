@@ -1,3 +1,7 @@
-express/node_modules/
+# Ignore a specific directory
+express/node_modules
 
+# Ignore all .log files
 *.log
+
+ 
