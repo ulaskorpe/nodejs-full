@@ -1,6 +1,6 @@
 # Ignore a specific directory
-express/node_modules
-public/images
+node_modules
+images
 # Ignore all .log files
 *.log
 
