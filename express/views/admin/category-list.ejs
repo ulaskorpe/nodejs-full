@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head")  %> 
+  
+
+</head>
+<body>
+    
+    <%- include("../partials/nav")  %> 
+  
+    <div class="container mt-3">
+          <div class="row">
+            <div class="col-md-12 mt-3">
+                <% if (action != "undefined" && action=="update") { %>
+                    <div class="alert alert-success">
+                        category Güncelledi.
+                    </div>
+                <% } %>
+                <% if (action != "undefined" && action=="create") { %>
+                    <div class="alert alert-success">
+                        category Eklendi.
+                    </div>
+                <% } %>
+                <% if (action != "undefined" && action=="delete") { %>
+                    <div class="alert alert-success">
+                        category Silindi.
+                    </div>
+                <% } %>
+         
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">id</th>
+                          
+                            <th>baslik</th>
+                            <th style="width:230px;"> <a href="/admin/category/create" class="btn btn-primary">Add Category </a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% categories.forEach(category => { %>
+                            <tr>
+                                <td>#<%= category.id %> </td>
+                                
+                                <td>
+                                    <%= category.name %> 
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="/admin/category/edit/<%=category.id %>">EDIT</a>
+                                    <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=category.id%>')" >DELETE</a>
+                                    <form action="/admin/category/delete/<%=category.id%>" method="post" id="form<%=category.id%>">
+                                        <input type="hidden" name="id" value="<%=category.id%>">
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+  
+
+        function confirmDelete(id){
+         
+            Swal.fire({
+                title: 'Category will be deleted , Are you sure?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  //  alert('form'+id);
+                     document.getElementById('form'+id).submit();
+                    //$('#form'+id).submit();
+                }
+              })
+ 
+        }
+    </script>
+</body>
+</html>
+
+
+

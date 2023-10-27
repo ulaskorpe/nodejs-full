@@ -1,12 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include("../partials/head")  %> 
+  
+
 </head>
 <body>
-    admin blog list
+    
+    <%- include("../partials/nav")  %> 
+  
+    <div class="container mt-3">
+          <div class="row">
+            <div class="col-md-12 mt-3">
+                <% if (action != "undefined" && action=="update") { %>
+                    <div class="alert alert-success">
+                          blog Güncelledi.
+                    </div>
+                <% } %>
+                <% if (action != "undefined" && action=="create") { %>
+                    <div class="alert alert-success">
+                        Blog Eklendi.
+                    </div>
+                <% } %>
+                <% if (action != "undefined" && action=="delete") { %>
+                    <div class="alert alert-success">
+                        Blog Silindi.
+                    </div>
+                <% } %>
+         
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">id</th>
+                            <th style="width: 150px;">resim</th>
+                            <th>baslik</th>
+                            <th style="width: 130px;"> <a href="/admin/blog/create" class="btn btn-primary">Add Blog </a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% blogs.forEach(blog => { %>
+                            <tr>
+                                <td>#<%= blog.id %> </td>
+                                <td>
+                                    <img src="/static/images/<%= blog.image %>" class="img-fluid " alt="" >
+                                </td>
+                                <td>
+                                    <%= blog.title %> 
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="/admin/blog/edit/<%=blog.id %>">EDIT</a>
+                                    <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=blog.id%>')" >DELETE</a>
+                                    <form action="/admin/blog/delete/<%=blog.id%>" method="post" id="form<%=blog.id%>">
+                                        <input type="hidden" name="id" value="<%=blog.id%>">
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+  
+
+        function confirmDelete(id){
+         
+            Swal.fire({
+                title: 'Blog will be deleted , Are you sure?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  //  alert('form'+id);
+                     document.getElementById('form'+id).submit();
+                    //$('#form'+id).submit();
+                }
+              })
+ 
+        }
+    </script>
 </body>
 </html>
+
+
+

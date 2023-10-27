@@ -1,0 +1,10 @@
+<div class="list-group">
+    <!--   <% for( let index = 0; index < categories.length; index++ ) { %>
+           <a href="" class="list-group-item list-group-item-action  "><%=categories[index] %></a>
+       <% } %>-->
+       <% categories.forEach(function(category){ %>
+           <a href="/blogs/category/<%=category.id%>" 
+            class="list-group-item list-group-item-action <%=selected_category == category.id ? "active" : ""%>">
+            <%=category.name %></a>
+           <% }) %>
+   </div>

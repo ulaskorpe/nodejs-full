@@ -36,4 +36,24 @@ app.set("view engine","ejs");
 
 res.senFile >> res.render   ,    res.render("users/index");  yeterli arayacğı yer zatn views dir
 
+///settings.json
 
+If snippets do not show up, add the following to your settings file
+
+    "emmet.includeLanguages": {
+        "ejs": "html",
+    },
+
+
+     <%- include('../partials/nav') %>
+
+         <%- include('../partials/blog-card',( blog ,data2 ,data3 .. ) ) %>   /// in loops send obj to partial and use it as vars in partial 
+npm i mysql2@2.3.3
+
+///// nesne üzerinde filter 
+  <% if (blogs.filter(b=>b.home).length >1) { %>
+              
+                      <%- include('../partials/pagination') %>
+                        
+                     
+                    <% } %>
