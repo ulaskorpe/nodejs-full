@@ -15,6 +15,20 @@ catch(err){
     console.log(err);
 }
 });
+
+
+router.post("/categories/delete/:category_id", async function(req, res) {
+  
+  try {
+    const id = req.params.category_id;
+   await db.execute("delete from categories where id=?",[id]);
+   await db.execute("UPDATE blogs SET category_id=0 where id=?",[id]);
+     res.redirect("/admin/categories?action=delete");
+}
+catch(err){
+    console.log(err);
+}
+});
 router.get("/blog/edit/:blogid", async function(req, res) {
   try {
     const id = req.params.blogid;

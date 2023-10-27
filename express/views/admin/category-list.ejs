@@ -48,7 +48,7 @@
                                 <td>
                                     <a class="btn btn-sm btn-primary" href="/admin/category/edit/<%=category.id %>">EDIT</a>
                                     <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=category.id%>')" >DELETE</a>
-                                    <form action="/admin/category/delete/<%=category.id%>" method="post" id="form<%=category.id%>">
+                                    <form action="/admin/categories/delete/<%=category.id%>" method="post" id="form<%=category.id%>">
                                         <input type="hidden" name="id" value="<%=category.id%>">
                                     </form>
                                 </td>
@@ -62,10 +62,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script>
-  
-
         function confirmDelete(id){
-         
             Swal.fire({
                 title: 'Category will be deleted , Are you sure?',
                 text: "",
@@ -76,9 +73,9 @@
                 confirmButtonText: 'Yes, delete it!'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  //  alert('form'+id);
+               
                      document.getElementById('form'+id).submit();
-                    //$('#form'+id).submit();
+                  
                 }
               })
  
