@@ -10,8 +10,9 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12 mt-3">
-                <form action="/admin/blog/edit/<%=blog.id%>" method="post" >
+                <form action="/admin/blog/edit/<%=blog.id%>" method="post" enctype="multipart/form-data">
                     <input type="hidden" value="<%=blog.id%>" name="id">
+                    <input type="hidden" value="<%=blog.image%>" name="image">
                     <div class="row mb-3">
                         <label for="baslik" class="col-sm-2 col-form-label">Başlık</label>
                         <div class="col-sm-8">
@@ -19,9 +20,15 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="aciklama" class="col-sm-2 col-form-label">Açıklama</label>
+                        <label for="pre" class="col-sm-2 col-form-label">Alt Başlık</label>
                         <div class="col-sm-8">
-                            <textarea name="description" class="form-control" rows="10"><%=blog.description%></textarea>
+                            <input type="text" class="form-control" id="pre" name="pre"  value="<%=blog.pre%>" >
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="description" class="col-sm-2 col-form-label">Açıklama</label>
+                        <div class="col-sm-8">
+                            <textarea name="description"  id="description"  class="form-control" rows="10"><%=blog.description%></textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -82,7 +89,14 @@
             </div>
         </div>
     </div>
-       
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 </body>
 </html>
 
