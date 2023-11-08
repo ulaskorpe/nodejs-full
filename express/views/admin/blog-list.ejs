@@ -40,21 +40,21 @@
                     <tbody>
                         <% blogs.forEach(blog => { %>
                             <tr>
-                                <td>#<%= blog.id %> </td>
+                                <td>#<%= blog.dataValues.id %> </td>
                                 <td>
-                                    <img src="/static/images/<%= blog.image %>" class="img-fluid " alt="" >
+                                    <img src="/static/images/<%= blog.dataValues.image %>" class="img-fluid " alt="" >
                                 </td>
                                 <td>
-                                    <%= blog.title %> 
+                                    <%= blog.dataValues.title %> 
                                     <p>
-                                        <%=blog.pre%>
+                                        <%=blog.dataValues.pre%>
                                     </p>
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="/admin/blog/edit/<%=blog.id %>">EDIT</a>
-                                    <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=blog.id%>')" >DELETE</a>
-                                    <form action="/admin/blog/delete/<%=blog.id%>" method="post" id="form<%=blog.id%>">
-                                        <input type="hidden" name="id" value="<%=blog.id%>">
+                                    <a class="btn btn-sm btn-primary" href="/admin/blog/edit/<%=blog.dataValues.id %>">EDIT</a>
+                                    <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=blog.dataValues.id%>')" >DELETE</a>
+                                    <form action="/admin/blog/delete/<%=blog.id%>" method="post" id="form<%=blog.dataValues.id%>">
+                                        <input type="hidden" name="id" value="<%=blog.dataValues.id%>">
                                     </form>
                                 </td>
                             </tr>

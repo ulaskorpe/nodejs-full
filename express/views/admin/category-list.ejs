@@ -14,17 +14,17 @@
             <div class="col-md-12 mt-3">
                 <% if (action != "undefined" && action=="update") { %>
                     <div class="alert alert-success">
-                        category Güncelledi.
+                        category updated.
                     </div>
                 <% } %>
                 <% if (action != "undefined" && action=="create") { %>
                     <div class="alert alert-success">
-                        category Eklendi.
+                        category created.
                     </div>
                 <% } %>
                 <% if (action != "undefined" && action=="delete") { %>
                     <div class="alert alert-success">
-                        category Silindi.
+                        category deleted.
                     </div>
                 <% } %>
          
@@ -40,16 +40,16 @@
                     <tbody>
                         <% categories.forEach(category => { %>
                             <tr>
-                                <td>#<%= category.id %> </td>
+                                <td>#<%= category.dataValues.id %> </td>
                                 
                                 <td>
-                                    <%= category.name %> 
+                                    <%= category.dataValues.name %> 
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="/admin/category/edit/<%=category.id %>">EDIT</a>
-                                    <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=category.id%>')" >DELETE</a>
-                                    <form action="/admin/categories/delete/<%=category.id%>" method="post" id="form<%=category.id%>">
-                                        <input type="hidden" name="id" value="<%=category.id%>">
+                                    <a class="btn btn-sm btn-primary" href="/admin/category/edit/<%=category.dataValues.id %>">EDIT</a>
+                                    <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=category.dataValues.id%>')" >DELETE</a>
+                                    <form action="/admin/categories/delete/<%=category.dataValues.id%>" method="post" id="form<%=category.dataValues.id%>">
+                                        <input type="hidden" name="id" value="<%=category.dataValues.id%>">
                                     </form>
                                 </td>
                             </tr>
