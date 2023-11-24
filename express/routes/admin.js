@@ -16,8 +16,6 @@ router.post("/blog/delete/:blogid", async function(req, res) {
     const blog = await Blog.findByPk(id);
 
     if(blog.image) {
-      
-
         fs.unlink('./public/images/' + blog.image, err => {
             console.log(err);
         });
@@ -36,6 +34,16 @@ router.post("/categories/delete/:category_id", async function(req, res) {
   
   try {
     const id = req.params.category_id;
+
+
+
+    await Blog.update({category_id : 0},{where : {
+      category_id:id
+
+     }});
+     await  Category.destroy({
+      where: { id : id }
+     })
   //  await db.execute("delete from categories where id=?",[id]);
   //  await db.execute("UPDATE blogs SET category_id=0 where id=?",[id]);
      res.redirect("/admin/categories?action=delete");

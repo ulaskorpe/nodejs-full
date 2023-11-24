@@ -1,0 +1,38 @@
+ //res.send(products);
+    //const products = await Product.find();
+    //const products = await Product.find({ isActive:true}).select({name:1,price:1}).limit(1);
+  //  const products = await Product.find({ isActive:true}).select({name:1,price:1}) ;
+  // const products = await Product.find();
+    // const products = await Product.find({ price: { $eq: 10000 } });
+    // const products = await Product.find({ price: { $ne: 10000 } });
+    // const products = await Product.find({ price: { $gt: 10000 } });
+    // const products = await Product.find({ price: { $gte: 10000 } });
+    // const products = await Product.find({ price: { $lt: 10000 } }); // price < 10000
+    // const products = await Product.find({ price: { $lte: 10000 } }); // price <= 10000
+    // const products = await Product.find({ price: { $in: [10000, 20000] } });
+    // const products = await Product.find({ price: { $nin: [10000, 20000] } });
+    // const products = await Product.find({ price: { $gte: 10000, $lte: 20000 } });
+    // const products = await Product.find({ price: { $gte: 10000, $lte: 20000 }, name: "Samsung" }); // and
+    // const products = await Product.find()
+    //                             .or([
+    //                                 { price: { $gte: 10000} }, 
+    //                                 {isActive: true }
+    //                             ]); // (price >= 10000 or isActive==true)
+
+
+    // startwith
+    // const products = await Product.find({ name: /^iphone/ });
+
+    // endwith
+    // const products = await Product.find({ name: /iphone$/ });
+ 
+    //const products = await Product.find({ isActive:true, price : { $ne : 10000}}).select({name:1,price:1}) ;
+      // contains
+   //  const products = await Product.find({ name: /^iphone/ });
+   
+
+    // endwith
+    // const products = await Product.find({ name: /iphone$/ });
+
+    // contains/ i upper+lower case 
+    //const products = await Product.find({ name: /.*iphone.*/i });

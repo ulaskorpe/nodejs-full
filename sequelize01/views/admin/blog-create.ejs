@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head")  %> 
+</head>
+<body>
+    
+    <%- include("../partials/nav")  %> 
+
+    <div class="container mt-3">
+        <form action="/admin/blog/create?_csrf=<%=csrfToken%>" method="post" enctype="multipart/form-data"> 
+          
+        <div class="row ">
+
+            <div class="col-md-8 mt-3">
+                <% if (typeof message != "undefined") { %>
+                    <div class="alert alert-warning">
+                        <%= message.text  %> 
+                    </div>
+                <% } %>
+                
+ 
+                    <div class="row mb-3">
+                        <label for="baslik" class="col-sm-2 col-form-label">Başlık</label>
+                        <div class="col-sm-8">
+                            <input type="text"  name="title" class="form-control" id="title"  value="<%= (typeof values != 'undefined') ? values.title : '' %>"  >
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="pre" class="col-sm-2 col-form-label">Alt Başlık</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="pre" name="pre"  value="<%= (typeof values != 'undefined') ? values.pre : '' %>" >
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="description" class="col-sm-2 col-form-label">Açıklama</label>
+                        <div class="col-sm-8">
+                            <textarea name="description"  id="description"  class="form-control" rows="10"><%= (typeof values != 'undefined') ? values.description : '' %></textarea>
+                        </div>
+                    </div>
+                     
+                    <div class="row mb-3">
+                        <label for="image" class="col-sm-2 col-form-label">Resim</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="form-control" id="image" name="image" value="<%= (typeof values != 'undefined') ? values.image : '' %>">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="image" class="col-sm-2 col-form-label"> </label>
+                        <div class="col-sm-8">
+                            <div id="imagePreview"></div>
+                        </div>
+                    </div>
+             
+
+            
+                    
+                
+            </div>
+
+            <div class="col-md-2 mt-3">
+
+                <div class="row mb-3">
+                    <div class="col-sm-8  ">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="home" name="home" value="on"  >
+                        <label class="form-check-label" for="anasayfa">
+                            Anasayfa
+                        </label>
+                      </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-8  ">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="verified" name="verified" value="on" >
+                        <label class="form-check-label" for="onay"> 
+                            Onay
+                        </label>
+                      </div>
+                    </div>
+                </div>
+                <div class="row border-top pt-3 pb-5">
+                    <% categories.forEach(category => { %>
+                        <div class="form-check">
+                          <input class="form-check-input" 
+                          type="checkbox" 
+                          id="category_<%= category.id %>" 
+                          name="categories[]" 
+                          value="<%=category.id%>"
+                          
+                          />  
+                          <label class="form-check-label" for="category_<%= category.id %>">
+                            <%= category.name %>
+                          </label>
+                        </div>
+                     
+                    <% }) %>
+
+              </div>
+
+                <div class="row mb-3">
+                    <div class="col-sm-8 offset-sm-2">
+                      <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+
+//             const fileInput = document.getElementById('image');
+//             const imagePreview = document.getElementById('imagePreview');
+
+//             fileInput.addEventListener('change', function(event) {
+//   // Check if any file is selected
+//   if (event.target.files && event.target.files[0]) {
+//     const reader = new FileReader();
+
+//     // Load the selected image as a data URL
+//     reader.onload = function(e) {
+//       const img = document.createElement('img');
+//       console.log(e.target.result);
+//       img.src ="../"+ e.target.result;
+//       img.style.maxWidth = '100%'; // Adjust image styling
+//       imagePreview.innerHTML = ''; // Clear previous content
+//       imagePreview.appendChild(img); // Append the image to the preview element
+//     };
+
+//     reader.readAsDataURL(event.target.files[0]); // Read the selected file
+//   } else {
+//     // If no file is selected, clear the image preview
+//     imagePreview.innerHTML = '';
+//   }
+// });
+            // $(document).ready(function () {
+            //         $("#image").change(function (e) {
+            //                        //  console.log(URL.createObjectURL(e.target.files[0]));
+            //                         $("#imgPreview").attr("src", URL.createObjectURL(e.target.files[0]));
+            //         });
+            // });
+
+
+        //     function showImage(img, t) {
+        //   //  $('#' + hide_it).hide();
+        //     $('#' + img).show();
+        //     var src = document.getElementById(img);
+        //     var target = document.getElementById(t);
+        //     var val = $('#' + img).val();
+        //     console.log(val);
+        //     var arr = val.split('\\');
+        //     $('#' + img + '_error').html("");
+        //     $('#' + t).show();
+        //    $('#' + img + '_error').html("");
+        //             $('#' + t).show();
+        //             var fr = new FileReader();
+        //             fr.onload = function (e) {
+
+        //                 var image = new Image();
+        //                 image.src = e.target.result;
+
+        //                 target.src = val;
+
+                        
+        //             };
+        //             fr.readAsDataURL(src.files[0]);
+                
+            
+
+        // }
+           
+    </script>
+
+<% if (typeof message != "undefined") { %>
+    <script>
+        
+        Swal.fire({
+icon: "error",
+title: "ERROR!",
+text: "<%=message.text%>",
+
+}); 
+    </script>
+    <% } %>
+</body>
+</html>
+
+
+

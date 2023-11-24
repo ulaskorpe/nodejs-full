@@ -1,0 +1,35 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th style="width: 50px;">id</th>
+            <th style="width: 150px;">resim</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th style="width: 130px;"> <a href="/admin/blog/create" class="btn btn-primary">Add Blog </a></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% blogs.forEach(blog => { %>
+            <tr>
+                <td>#<%= blog.dataValues.id %> </td>
+                <td>
+                    <img src="/static/images/<%= blog.dataValues.image %>" class="img-fluid " alt="" >
+                </td>
+                <td>
+                    <%= blog.dataValues.title %> 
+                    <p>
+                        <%=blog.dataValues.pre%>
+                    </p>
+                </td>
+                <td><%=blog.category.name%></td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="/admin/blog/edit/<%=blog.dataValues.id %>">EDIT</a>
+                    <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=blog.dataValues.id%>')" >DELETE</a>
+                    <form action="/admin/blog/delete/<%=blog.id%>" method="post" id="form<%=blog.dataValues.id%>">
+                        <input type="hidden" name="id" value="<%=blog.dataValues.id%>">
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

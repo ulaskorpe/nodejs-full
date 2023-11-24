@@ -1,0 +1,11 @@
+{
+    "db": {
+        "name": "shopapp",
+        "username": "ulaskorpe",
+        "host": "192.168.56.56",
+        "port": "27017"
+    }
+}
+ 
+
+

@@ -21,6 +21,7 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 app.use("/admin", adminRoutes); /// with prefix admin
 app.use(userRoutes);
  
+ 
 app.listen(3000, function() {
     console.log("listening on port 3000");
 });

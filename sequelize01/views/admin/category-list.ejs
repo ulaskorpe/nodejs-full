@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head")  %> 
+  
+
+</head>
+<body>
+    
+    <%- include("../partials/nav")  %> 
+  
+    <div class="container mt-3">
+          <div class="row">
+            <div class="col-md-12 mt-3">
+                <% if (action != "undefined" && action=="update") { %>
+                    <div class="alert alert-success">
+                        category updated.
+                    </div>
+                <% } %>
+                <% if (action != "undefined" && action=="create") { %>
+                    <div class="alert alert-success">
+                        category created.
+                    </div>
+                <% } %>
+                <% if (action != "undefined" && action=="delete") { %>
+                    <div class="alert alert-success">
+                        category deleted.
+                    </div>
+                <% } %>
+         
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">id</th>
+                          
+                            <th>baslik</th>
+                            <th style="width:230px;"> <a href="/admin/category/create" class="btn btn-primary">Add Category </a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% categories.forEach(category => { %>
+                            <tr>
+                                <td>#<%= category.dataValues.id %> </td>
+                                
+                                <td>
+                                    <%= category.dataValues.name %> 
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="/admin/category/edit/<%=category.dataValues.id %>">EDIT</a>
+                                    <a class="btn btn-sm btn-danger" href="#" onclick="confirmDelete('<%=category.dataValues.id%>')" >DELETE</a>
+                                    <form action="/admin/categories/delete/<%=category.dataValues.id%>" method="post" id="form<%=category.dataValues.id%>">
+                                        <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                                        <input type="hidden" name="id" value="<%=category.dataValues.id%>">
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+    </div>
+ 
+    <script>
+        function confirmDelete(id){
+            Swal.fire({
+                title: 'Category will be deleted , Are you sure?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+               
+                     document.getElementById('form'+id).submit();
+                  
+                }
+              })
+ 
+        }
+    </script>
+</body>
+</html>
+
+
+

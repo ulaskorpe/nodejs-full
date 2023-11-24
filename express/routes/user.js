@@ -3,10 +3,7 @@ const router = express.Router();
 
 const path = require("path");
 
- 
-const Blog = require("../models/blog");
-const Category = require("../models/category");
-const {Op} = require("sequelize");
+
 
 
 

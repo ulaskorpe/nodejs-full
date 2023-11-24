@@ -1,0 +1,57 @@
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+    <div class="container">
+        <a href="/" class="navbar-brand">Blogapp</a>
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a href="/blogs" class="nav-link">Blog Listesi</a>
+            </li>
+            <% if( isAuth) { %>
+            <li class="nav-item">
+                <a href="/admin/blogs" class="nav-link">Admin Blogs </a>
+            </li>
+            <% if( isAdmin) { %>
+            <li class="nav-item">
+                <a href="/admin/categories" class="nav-link">Admin Categories </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/roles" class="nav-link">Roles </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="/admin/users" class="nav-link">Users</a>
+            </li>
+            <% }%>
+
+            <% }%>
+          
+            
+        </ul>
+
+
+        <ul class="navbar-nav ms-auto">
+
+            <% if (isAuth) { %>  
+                <form action="/accounts/logout" method="post" id="form-logout">
+
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                </form> 
+                <li class="nav-item">
+                   <span class="nav-link"> <%=full_name%></span>
+                </li>
+                <li class="nav-item">
+                    <a href="#" onclick="confirmLogOut()" class="nav-link">Logout </a>
+                </li>
+    
+            <% } else { %>
+                <li class="nav-item">
+                    <a href="/accounts/login" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/accounts/register" class="nav-link">Register</a>
+                </li>
+            <% } %>               
+            
+
+        </ul>
+    </div>
+</nav>

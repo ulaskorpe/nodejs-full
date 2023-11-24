@@ -1,0 +1,59 @@
+sql  :  database - tables - rows - columns
+mongoDB : database - collections - documents (BSON) - fields 
+
+mongodb  is a server ,
+
+every document no need to be same schema  , can have different fields
+
+sql is relational ,  mongoDB is noSQL  ! 
+
+embedded document : keep data whole in db  / refereces document  :  keep PK  in db 
+
+mongo credential :  ulaskorpe /RApiGAkDDVGs506Z
+
+
+
+db.createUser({
+  user: "ulaskorpe",
+  pwd: "123123",
+  roles: [{ role: "readWrite", db: "shopapp" }]
+})
+
+
+db.updateUser(
+  "ulaskorpe", 
+  {
+    roles: [
+      { role: "readWrite", db: "shopapp" },
+     
+    ],
+     
+  }
+)
+
+mongodb://ulaskorpe:123123@192.168.56.56:27017/
+
+db.grantRolesToUser(
+  "ulaskorpe",
+  [
+    { role: "readWrite", db: "shopapp" },
+    
+  ]
+)
+
+
+
+db.getSiblingDB('admin').grantRolesToUser(
+  "ulaskorpe",
+  [
+    { role: "readWrite", db: "shopapp" },
+     
+  ]
+)
+
+
+db.createUser({
+  user: "ulaskorpe",
+  pwd: "123123",
+  roles: ["root"]
+})
